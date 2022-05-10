@@ -7,6 +7,7 @@ import morgan from "morgan";
 import productRouter from "./routes/productRouter.js";
 import notFoundMiddleware from "./middleware/notFoundMiddleware.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
+import userRoute from "./routes/authroutes.js";
 
 const app = express();
 
@@ -29,6 +30,7 @@ mongoose.connect(DB, () => {
 morgan("tiny");
 
 app.use("/products", productRouter);
+app.use("/users", userRoute);
 
 //unhandled errors
 

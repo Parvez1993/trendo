@@ -19,6 +19,7 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     defaultError.statusCode = StatusCodes.BAD_REQUEST;
     defaultError.msg = `${err.keyValue.email} is already used. Please use another Email`;
   }
+  res.status(defaultError.statusCode).json({ msg: defaultError.msg });
 };
 
 export default errorHandlerMiddleware;

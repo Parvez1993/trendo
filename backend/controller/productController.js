@@ -16,6 +16,14 @@ const getProducts = async (req, res) => {
   }
 };
 
+const getProductsCategory = async (req, res) => {
+  const category = await Product.distinct("model");
+  if (category) {
+    res.status(StatusCodes.OK).json({ category });
+  } else {
+    res.status(StatusCodes.NOT_FOUND).json({ msg: "no category found" });
+  }
+};
 const getProductsbyId = async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (product) {
@@ -25,4 +33,21 @@ const getProductsbyId = async (req, res) => {
   }
 };
 
-export { getProducts, getProductsbyId, loadProducts };
+const getProductsbyCategory = async (req, res) => {
+  const match = req.params.category;
+  const category = await Product.find({ category: { $all: match } });
+
+  if (category) {
+    res.status(StatusCodes.OK).json({ category });
+  } else {
+    res.status(StatusCodes.NOT_FOUND).json({ msg: "no category found" });
+  }
+};
+
+export {
+  getProducts,
+  getProductsbyId,
+  loadProducts,
+  getProductsCategory,
+  getProductsbyCategory,
+};
