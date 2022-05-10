@@ -20,6 +20,15 @@ a{
   width: 300px;
 }
 
+.nav-list{
+  text-decoration: none;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
 .menu .item{
   margin-left: 20px;
   color: #fff;

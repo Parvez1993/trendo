@@ -8,12 +8,13 @@ import {
   Button,
 } from "react-bootstrap"
 
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Link } from "react-router-dom"
 import HomePage from "./components/homepage/HomePage"
 import ProductPage from "./components/ProductPage.js"
 import ProductDetails from "./components/ProductDetails.js"
 import CartPage from "./components/CartPage.js"
 import SignUp from "./components/SignUp"
+import { FaCartPlus, FaSearch } from "react-icons/fa"
 
 function App() {
   return (
@@ -25,18 +26,24 @@ function App() {
           </Navbar.Brand>
 
           <InputGroup size="sm" className="search ms-auto">
-            <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+            <InputGroup.Text id="basic-addon1">
+              <FaSearch />
+            </InputGroup.Text>
             <FormControl
-              placeholder="Username"
-              aria-label="Username"
+              placeholder="Search Product"
+              aria-label="Search Product"
               aria-describedby="basic-addon1"
             />
           </InputGroup>
 
           <Nav className="ms-auto">
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+            <Link className="nav-list" to="/">
+              Home
+            </Link>
+            <Link className="nav-list" to="/ProductPage">
+              Products
+            </Link>
+            <NavDropdown title={<FaCartPlus />} id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 Another action
@@ -48,7 +55,9 @@ function App() {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Button variant="danger">Sign Up</Button>
+          <Link to="/SignUp">
+            <Button variant="danger">Sign Up</Button>
+          </Link>
         </Container>
       </Navbar>
 
