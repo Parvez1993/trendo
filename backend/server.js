@@ -1,36 +1,32 @@
 import express from "express";
 import data from "./data.js";
 import cors from "cors";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import morgan from "morgan";
+import productRouter from "./routes/productRouter.js";
 
 const app = express();
 
+app.use(express.json());
+
 app.use(cors());
 
-app.get("/", function (req, res) {
-  res.send("Hello World");
+dotenv.config();
+
+app.use(morgan("dev"));
+
+const DB = process.env.DATABASE_LOCAL;
+
+//mongo connection
+
+mongoose.connect(DB, () => {
+  console.log("connected mongodb");
 });
 
-app.get("/products", function (req, res) {
-  res.send(data);
-});
+morgan("tiny");
 
-app.get("/products/:slug", function (req, res) {
-  let product = data.find((item) => {
-    if (req.params.slug == item.slug) {
-      return item;
-    }
-  });
-  res.send(product);
-});
-
-app.get("/cartproduct/:id", function (req, res) {
-  let product = data.find((item) => {
-    if (req.params.id == item._id) {
-      return item;
-    }
-  });
-  res.send(product);
-});
+app.use("/products", productRouter);
 
 app.listen(8000, () => {
   console.log("server running on 8000 port");
