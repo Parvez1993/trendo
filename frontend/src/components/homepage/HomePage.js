@@ -1,7 +1,12 @@
 import React from "react"
+import Slide from "./Slide/Slide"
 
 const HomePaje = () => {
-  return <div>HomePaje</div>
+  return (
+    <>
+      <Slide />
+    </>
+  )
 }
 
 export default HomePaje

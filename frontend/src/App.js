@@ -1,3 +1,4 @@
+import { useState } from "react"
 import {
   Navbar,
   Container,
@@ -6,6 +7,8 @@ import {
   InputGroup,
   FormControl,
   Button,
+  Modal,
+  Form,
 } from "react-bootstrap"
 
 import { Routes, Route, Link } from "react-router-dom"
@@ -13,8 +16,8 @@ import HomePage from "./components/homepage/HomePage"
 import ProductPage from "./components/ProductPage.js"
 import ProductDetails from "./components/ProductDetails.js"
 import CartPage from "./components/CartPage.js"
-import SignUp from "./components/SignUp"
 import { FaCartPlus, FaSearch } from "react-icons/fa"
+import SignUpModals from "./components/SignUpModals"
 
 function App() {
   return (
@@ -54,10 +57,8 @@ function App() {
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
+            <SignUpModals />
           </Nav>
-          <Link to="/SignUp">
-            <Button variant="danger">Sign Up</Button>
-          </Link>
         </Container>
       </Navbar>
 
@@ -66,7 +67,6 @@ function App() {
         <Route path="/products" element={<ProductPage />} />
         <Route path="/products/:slug" element={<ProductDetails />} />
         <Route path="/cartpage" element={<CartPage />} />
-        <Route path="/SignUp" element={<SignUp />} />
       </Routes>
     </>
   )

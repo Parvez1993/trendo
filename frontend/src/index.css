@@ -1,3 +1,7 @@
+body{
+  font-family: 'Roboto Slab', serif;
+}
+
 a{
   text-decoration: none;
 }
@@ -29,70 +33,34 @@ a{
   padding: 10px;
 }
 
-.menu .item{
-  margin-left: 20px;
-  color: #fff;
-  margin-top: 7px;
+.swiper {
+  width: 100%;
+  height: 100%;
 }
 
-.menu .dropdown a{
-  margin-left: 20px;
-  color: #fff !important;
-}
-.card-body {
-  padding-top: 160px;
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
 }
 
-.menu .dropdown-menu a{
-  margin-left: 0px;
-  color: #000 !important;
-}
-
-.navbar-expand .navbar-nav .dropdown-menu {
-  width: 408px;
-  padding: 20px;
-}
-
-.menu .badge {
-  margin-top: 6px;
-  padding: 0;
-  width: 28px;
-  height: 28px;
-  line-height: 28px;
-}
-
-.sidebar{
-  position: fixed;
-  top: 50%;
-  right: 0;
-}
-
-
-.title {
-  font-family: 'Hind', sans-serif;
-  font-weight: 500;
-  font-size: 20px;
-  color: #252525;
-  font-size: 20px;
-}
-.subDetails{
-  font-family: 'Hind';
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 22px;
-  color: #303960;
-}
-.model{
-  font-family: 'Hind';
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 22px;
-  color: #303960;
-}
-.price{
-  font-family: 'Hind';
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 22px;
-  color: #303960;
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
