@@ -1,42 +1,43 @@
 import React, { useRef, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
+import { Navigation, EffectFade } from "swiper"
 import "swiper/css"
-import "swiper/css"
-import "swiper/css/pagination"
-import { Pagination } from "swiper"
+import "swiper/css/bundle"
 import { Container } from "react-bootstrap"
-
-// Import Swiper styles
-
-// import required modules
+import "./slide.css"
 
 const Slide = () => {
   return (
-    <Container>
-      {/* <Swiper
-        direction={"vertical"}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
+    <Container className="py-4 px-4 justify-content-center  ">
+      <Swiper
+        modules={[Navigation, EffectFade]}
+        navigation
+        effect={"fade"}
+        speed={800}
+        slidesPerView={1}
+        loop
+        autoplay
         className="mySwiper"
       >
-        <SwiperSlide>
-          <img src="/images/1.jpeg" alt="" />
+        <SwiperSlide className="swiperSlide">
+          <img
+            src="https://i.postimg.cc/NG400cN3/pexels-andrea-piacquadio-842811.jpg"
+            alt=""
+          />
         </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/2.jpeg" alt="" />
+        <SwiperSlide className="swiperSlide">
+          <img
+            src="https://i.postimg.cc/3wq3GrMR/pexels-daisy-anderson-5589908.jpg"
+            alt=""
+          />
         </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/3.jpeg" alt="" />
+        <SwiperSlide className="swiperSlide">
+          <img
+            src="https://i.postimg.cc/cH80BqZc/pexels-mnz-1639729.jpg"
+            alt=""
+          />
         </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/4.jpeg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/5.jpeg" alt="" />
-        </SwiperSlide>
-      </Swiper> */}
+      </Swiper>
     </Container>
   )
 }
