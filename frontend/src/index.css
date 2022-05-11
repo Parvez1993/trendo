@@ -64,3 +64,36 @@ a{
   height: 100%;
   object-fit: cover;
 }
+
+.title {
+  font-family: 'Hind', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: #252525;
+  font-size: 20px;
+}
+.description{
+  font-family: 'Hind';
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+  color: #303960;
+}
+.model{
+  font-family: 'Hind';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #303960;
+}
+.price{
+  font-family: 'Hind';
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 22px;
+  color: #303960;
+}
+
+.card-body {
+  padding-top: 175px;
+}

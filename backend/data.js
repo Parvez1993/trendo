@@ -2,7 +2,7 @@ let data = [
   {
     name: "Dress 1",
     slug: "Dress1",
-    img: "/images/1.jpg",
+    img: "/images/1.jpeg",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel molestie turpis. Morbi at purus scelerisque, lobortis turpis ac, maximus dolor.",
     price: 400,
@@ -18,7 +18,7 @@ let data = [
   {
     name: "Dress 2",
     slug: "Dress2",
-    img: "/images/2.jpg",
+    img: "/images/2.jpeg",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel molestie turpis. Morbi at purus scelerisque, lobortis turpis ac, maximus dolor.",
     price: 600,
@@ -34,7 +34,7 @@ let data = [
   {
     name: "Dress 3",
     slug: "Dress3",
-    img: "/images/3.jpg",
+    img: "/images/3.jpeg",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel molestie turpis. Morbi at purus scelerisque, lobortis turpis ac, maximus dolor.",
     price: 800,
@@ -50,7 +50,7 @@ let data = [
   {
     name: "Dress 4",
     slug: "Dress4",
-    img: "/images/4.jpg",
+    img: "/images/4.jpeg",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel molestie turpis. Morbi at purus scelerisque, lobortis turpis ac, maximus dolor.",
     price: 900,
@@ -67,7 +67,7 @@ let data = [
   {
     name: "Dress 5",
     slug: "Dress5",
-    img: "/images/2.jpg",
+    img: "/images/2.jpeg",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel molestie turpis. Morbi at purus scelerisque, lobortis turpis ac, maximus dolor.",
     price: 400,
@@ -84,7 +84,7 @@ let data = [
   {
     name: "Dress 6",
     slug: "Dress6",
-    img: "/images/1.jpg",
+    img: "/images/1.jpeg",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel molestie turpis. Morbi at purus scelerisque, lobortis turpis ac, maximus dolor.",
     price: 400,
@@ -100,7 +100,7 @@ let data = [
   {
     name: "Dress 7",
     slug: "Dress 7",
-    img: "/images/child1.jpg",
+    img: "/images/7.jpeg",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel molestie turpis. Morbi at purus scelerisque, lobortis turpis ac, maximus dolor.",
     price: 400,
@@ -116,7 +116,7 @@ let data = [
   {
     name: "Dress 8",
     slug: "Dress 8",
-    img: "/images/child2.jpg",
+    img: "/images/8.jpeg",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel molestie turpis. Morbi at purus scelerisque, lobortis turpis ac, maximus dolor.",
     price: 800,

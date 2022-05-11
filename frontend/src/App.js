@@ -43,7 +43,7 @@ function App() {
             <Link className="nav-list" to="/">
               Home
             </Link>
-            <Link className="nav-list" to="/ProductPage">
+            <Link className="nav-list" to="/products">
               Products
             </Link>
             <NavDropdown title={<FaCartPlus />} id="collasible-nav-dropdown">
