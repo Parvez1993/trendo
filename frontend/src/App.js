@@ -43,8 +43,11 @@ function App() {
             <Link className="nav-list" to="/">
               Home
             </Link>
-            <Link className="nav-list" to="/ProductPage">
+            <Link className="nav-list" to="/products">
               Products
+            </Link>
+            <Link className="nav-list" to="/cartpage">
+              Cart
             </Link>
             <NavDropdown title={<FaCartPlus />} id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -65,7 +68,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductPage />} />
-        <Route path="/products/:slug" element={<ProductDetails />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/cartpage" element={<CartPage />} />
       </Routes>
     </>
