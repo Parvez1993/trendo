@@ -47,6 +47,13 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
       required: [true, "Please provide price"],
     },
+    coupon: {
+      type: String,
+    },
+    discount: {
+      type: Number,
+      required: [true, "Please provide price"],
+    },
   },
   {
     timestamps: true,
