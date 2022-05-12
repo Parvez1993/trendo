@@ -1,7 +1,9 @@
-import React, { useEffect, useReducer } from "react"
+import React, { useContext, useEffect, useReducer } from "react"
 import { Col, Container, Row,Card,Badge,Button,Form } from 'react-bootstrap';
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 import Rating from "./Rating";
+import { Store } from "../Store";
 
 
 function reducer(state, action) {
@@ -28,14 +30,35 @@ const ProductPage = () => {
     async function fetchData() {
       dispatch({type: 'FETCH_REQUEST'})
       try{
-        let product = await axios.get('http://localhost:4000/products/loadProducts')
-        dispatch({type: 'FETCH_SUCCESS', payload: product.data})
+        let {data} = await axios.get('http://localhost:4000/products')
+        let {products}=data;
+        dispatch({type: 'FETCH_SUCCESS', payload: products})
       }catch(err){
         dispatch({type: 'FETCH_FAILS', payload: err.message})
       }
     }
     fetchData()
   },[])
+
+
+  const {state, dispatch: ctxDispatch} = useContext(Store)
+  const {cart} = state 
+
+  let handleAddToCart = async (product) =>{
+    console.log(product);
+    const existingItem = cart.cartItems.find((item)=>item._id === product._id)
+    const quantity = existingItem ? existingItem.quantity + 1 : 1
+   
+    ctxDispatch({
+      type: 'CART_ADD_ITEMS',
+      payload: {...product, quantity}
+    })
+  }
+
+
+
+
+
 
   return (
     <Container>
@@ -48,10 +71,9 @@ const ProductPage = () => {
                 style={{height: 40}}
             >
                 <Card.Title className='mt-3 '>
-                    {/* <Link to={`/products/${item.slug}`}>
-                        <h4 className='title'>{item.title}</h4> {' '}
-                    </Link> */}
-                    <h4 className='title'>{item.name}</h4> {' '}
+                    <Link to={`/products/${item.slug}`}>
+                        <h4 className='title'>{item.name}</h4> {' '}
+                    </Link>
                 </Card.Title>
                 <h5 className='model'>
                   Category: {item.model}
@@ -84,7 +106,7 @@ const ProductPage = () => {
               :
                 <Button 
                   className='mt-5 w-100 '
-                  // onClick={()=> handleAddToCart(item)}
+                  onClick={()=> handleAddToCart(item)}
                   variant="info"
                   >
                   Add to Card
@@ -96,6 +118,7 @@ const ProductPage = () => {
         ))}
       </Row>
     </Container>
+ 
   )
 }
 
