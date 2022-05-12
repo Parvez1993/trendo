@@ -1,24 +1,46 @@
 import React, { useEffect, useState } from "react"
 import { Card, Col, Container, Row, Button } from "react-bootstrap"
-import Slide from "./Slide/Slide"
-import homepage from "./homepage.css"
 import axios from "axios"
 import { Link } from "react-router-dom"
-import SignInModals from "../SignInModals"
 
 const CategoryCard = () => {
-  const [product, setProduct] = useState([])
-  // console.log(product)
+  const [menProduct, setMenProduct] = useState([])
+  const [womenProduct, setWomenProduct] = useState([])
+  const [childrenProduct, setChildrenProduct] = useState([])
 
   useEffect(() => {
     async function fetchData() {
-      let { data } = await axios.get("http://localhost:4000/products")
-      let product = data.products
-      setProduct(product)
-      // console.log(product)
+      let { data } = await axios.get(
+        "http://localhost:4000/products/category/men"
+      )
+      let product1 = data.category
+      setMenProduct(product1)
     }
     fetchData()
   }, [])
+
+  useEffect(() => {
+    async function fetchData() {
+      let { data } = await axios.get(
+        "http://localhost:4000/products/category/women"
+      )
+      let product2 = data.category
+      setWomenProduct(product2)
+    }
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+    async function fetchData() {
+      let { data } = await axios.get(
+        "http://localhost:4000/products/category/children"
+      )
+      let product3 = data.category
+      setChildrenProduct(product3)
+    }
+    fetchData()
+  }, [])
+
   return (
     <>
       <Container>
@@ -28,7 +50,7 @@ const CategoryCard = () => {
               <Card.Title className="text-center ">Men Clothes</Card.Title>
               <hr className="bg-dark border-2 border-top border-dark"></hr>
               <div>
-                {product.map((item, i) => (
+                {menProduct.map((item, i) => (
                   <img
                     key={i}
                     className="category-card p-1"
@@ -45,7 +67,7 @@ const CategoryCard = () => {
               <Card.Title className="text-center ">Women Clothes</Card.Title>
               <hr className="bg-dark border-2 border-top border-dark"></hr>
               <div>
-                {product.map((item, i) => (
+                {womenProduct.map((item, i) => (
                   <img
                     key={i}
                     className="category-card p-1"
@@ -62,7 +84,7 @@ const CategoryCard = () => {
               <Card.Title className="text-center ">Children Clothes</Card.Title>
               <hr className="bg-dark border-2 border-top border-dark"></hr>
               <div>
-                {product.map((item, i) => (
+                {childrenProduct.map((item, i) => (
                   <img
                     key={i}
                     className="category-card p-1"
@@ -78,10 +100,14 @@ const CategoryCard = () => {
             <Card style={{ width: "20rem" }}>
               <Card.Body>
                 <Card.Title style={{ fontSize: "19px", textAlign: "center" }}>
-                  Sign in for the best experience
+                  Log in for the best experience
                 </Card.Title>
                 <div className="d-grid gap-2 mt-3">
-                  <SignInModals />
+                  <Link to="/login">
+                    <Button className="btn-signin" variant="danger" size="lg">
+                      Login
+                    </Button>
+                  </Link>
                 </div>
               </Card.Body>
             </Card>

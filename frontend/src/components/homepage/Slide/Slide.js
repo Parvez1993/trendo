@@ -2,7 +2,6 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, EffectFade } from "swiper"
 import "swiper/css"
 import "swiper/css/bundle"
-import { Container } from "react-bootstrap"
 import "./slide.css"
 
 const Slide = () => {

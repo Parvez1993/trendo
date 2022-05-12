@@ -1,3 +1,5 @@
+import { useContext } from "react"
+
 import {
   Navbar,
   Container,
@@ -5,6 +7,10 @@ import {
   NavDropdown,
   InputGroup,
   FormControl,
+  Table,
+  Button,
+  Badge,
+  Card,
 } from "react-bootstrap"
 
 import { Routes, Route, Link, useNavigate } from "react-router-dom"
@@ -12,11 +18,19 @@ import HomePage from "./components/homepage/HomePage"
 import ProductPage from "./components/ProductPage.js"
 import ProductDetails from "./components/ProductDetails.js"
 import CartPage from "./components/CartPage.js"
-import { FaCartPlus, FaMinus, FaPlus, FaSearch } from "react-icons/fa"
-import SignUpModals from "./components/SignUpModals"
+import {
+  FaCartPlus,
+  FaMinusCircle,
+  FaPlusCircle,
+  FaSearch,
+  FaTrashAlt,
+  FaPlus,
+  FaMinus,
+} from "react-icons/fa"
 import LoginPage from "./components/LoginPage"
 import { Store } from "./Store"
 import OrderConfirmed from "./components/OrderConfirmed"
+import { ImDisplay } from "react-icons/im"
 
 function App() {
   const {
@@ -81,80 +95,82 @@ function App() {
             </Link>
             <div className="d-flex">
               <NavDropdown
-                title={<span className="text-white my-auto">Cart</span>}
+                title={<span className="text-white my-auto ">Cart</span>}
               >
-                <Table striped bordered hover size="sm">
-                  {state.cart.cartItems.length > 0 ? (
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Image</th>
-                        <th>Price</th>
-                        <th>Quanity </th>
-                        <th>Total </th>
-                        <th>Remove</th>
-                      </tr>
-                    </thead>
-                  ) : (
-                    <p className="text-center">No items in cart</p>
-                  )}
+                <div className="p-3">
+                  <Table striped bordered hover size="sm">
+                    {state.cart.cartItems.length > 0 ? (
+                      " "
+                    ) : (
+                      <p className="text-center">No items in cart</p>
+                    )}
 
-                  {state.cart.cartItems.map((item) => {
-                    return (
-                      <>
-                        <tr>
-                          <td>{item.name}</td>
-                          <td>
-                            <img
-                              src={item.img}
-                              alt={item.name}
-                              style={{ width: "100px" }}
-                            />
-                          </td>
-                          <td>{item.price}</td>
-                          <td>
-                            <div className="d-flex align-items-center gap-2 justify">
-                              <Button
-                                onClick={() =>
-                                  updateCart(item, item.quantity + 1)
-                                }
-                                disabled={
-                                  item.quantity >= item.stock ? true : false
-                                }
-                              >
-                                <FaPlus />
-                              </Button>
-                              <h6>{item.quantity}</h6>
-                              <Button
-                                variant="warning"
-                                onClick={() =>
-                                  updateCart(item, item.quantity - 1)
-                                }
-                                disabled={item.quantity <= 1 ? true : false}
-                              >
-                                <FaMinus />
-                              </Button>
-                            </div>
-                          </td>
-                          <td>{item.quantity * item.price}</td>
-                          <td>
-                            <div>
-                              <Button
-                                variant="danger"
-                                onClick={() => {
-                                  handleRemoveItem(item._id)
-                                }}
-                              >
-                                Delete
-                              </Button>
-                            </div>
-                          </td>
-                        </tr>
-                      </>
-                    )
-                  })}
-                </Table>
+                    {state.cart.cartItems.map((item) => {
+                      return (
+                        <>
+                          <tr>
+                            <td style={{ fontSize: "12px" }}>{item.name}</td>
+                            <td>
+                              <img
+                                style={{ width: "60px" }}
+                                src={item.img}
+                                alt={item.name}
+                              />
+                            </td>
 
+                            <td>
+                              <div className="d-flex align-items-center gap-2 justify">
+                                <Button
+                                  variant="dark"
+                                  style={{ fontSize: "8px" }}
+                                  onClick={() =>
+                                    updateCart(item, item.quantity + 1)
+                                  }
+                                  disabled={
+                                    item.quantity >= item.stock ? true : false
+                                  }
+                                >
+                                  <FaPlus />
+                                </Button>
+                              </div>
+                            </td>
+                            <td style={{ fontSize: "12px" }}>
+                              {item.quantity}
+                            </td>
+                            <td>
+                              <div className="d-flex align-items-center gap-2 justify">
+                                <Button
+                                  variant="dark"
+                                  style={{ fontSize: "8px" }}
+                                  onClick={() =>
+                                    updateCart(item, item.quantity - 1)
+                                  }
+                                  disabled={item.quantity <= 1 ? true : false}
+                                >
+                                  <FaMinus />
+                                </Button>
+                              </div>
+                            </td>
+                            <td style={{ fontSize: "12px", width: "20px" }}>
+                              {item.quantity * item.price}
+                            </td>
+                            <td>
+                              <div>
+                                <FaTrashAlt
+                                  style={{ fontSize: "24px" }}
+                                  variant="danger"
+                                  onClick={() => {
+                                    handleRemoveItem(item._id)
+                                  }}
+                                />
+                              </div>
+                            </td>
+                          </tr>
+                        </>
+                      )
+                    })}
+                  </Table>
+                </div>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/cartpage">
                   <div className="text-center">

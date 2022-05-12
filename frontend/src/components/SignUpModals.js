@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useLocation } from "react"
 import { Modal, Form, Button } from "react-bootstrap"
 
 const Signup = () => {

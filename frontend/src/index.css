@@ -21,6 +21,11 @@ a {
   margin-left: 10px;
 }
 
+.cart-button {
+  width: 30px;
+  height: 30px;
+}
+
 .search {
   width: 300px;
 }
@@ -32,6 +37,11 @@ a {
   justify-content: center;
   align-items: center;
   padding: 10px;
+}
+
+.nav-cart {
+  width: 240px;
+  background-size: cover;
 }
 
 .swiper {
@@ -93,4 +103,11 @@ a {
   font-size: 22px;
   line-height: 22px;
   color: #303960;
+}
+
+table,
+th,
+td {
+  margin: 0;
+  padding: 0;
 }
