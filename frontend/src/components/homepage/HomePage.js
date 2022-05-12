@@ -11,7 +11,6 @@ const HomePage = () => {
   return (
     <>
       <Slide />
-
       <div
         className="d-flex justify-content-center mt-5"
         style={{ width: "100%" }}
@@ -37,9 +36,13 @@ const HomePage = () => {
 
       <CategoryCard />
 
-      {/* <TabsCategory /> */}
-
       <ProductSlideTwo />
+
+      <TabsCategory />
+
+      <div className="footer">
+        <p>© 2022, Trendo.com, Inc. or its affiliates</p>
+      </div>
     </>
   )
 }

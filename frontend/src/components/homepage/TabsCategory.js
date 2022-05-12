@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from "react"
-import { Card, Col, Container, Row, Button, Nav } from "react-bootstrap"
+import { Container, Tabs, Tab, Card } from "react-bootstrap"
 import Slide from "./Slide/Slide"
 import homepage from "./homepage.css"
 import axios from "axios"
 
 const TabsCategory = () => {
   const [product, setProduct] = useState([])
-  // console.log(product)
+
+  const [menData, setMendata] = useState({})
+
+  console.log(product)
+
+  let [querryMen, setQuerrymen] = useState([])
+
+  let mencloth = () => {
+    let testproduct = product.map((item) => item.category)
+    setMendata(testproduct)
+    console.log(testproduct)
+  }
+
+  let querryCallMen = (item) => {}
 
   useEffect(() => {
     async function fetchData() {
@@ -19,23 +32,18 @@ const TabsCategory = () => {
   }, [])
 
   return (
-    <Container>
-      <Nav fill variant="tabs" defaultActiveKey="/home">
-        <Nav.Item>
-          <Nav.Link href="/home">Active</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="link-1">Loooonger NavLink</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="link-2">Link</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="disabled" disabled>
-            Disabled
-          </Nav.Link>
-        </Nav.Item>
-      </Nav>
+    <Container className="mb-5">
+      <Card className="p-5">
+        <Tabs id="controlled-tab-example" className="mb-3">
+          <Tab eventKey="women" title="Women">
+            Hello
+          </Tab>
+          <Tab eventKey="children" title="Children">
+            Hello
+          </Tab>
+        </Tabs>
+      </Card>
+      {/* <button onClick={mencloth()}>test</button> */}
     </Container>
   )
 }

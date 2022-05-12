@@ -29,15 +29,12 @@ const CategoryCard = () => {
               <hr className="bg-dark border-2 border-top border-dark"></hr>
               <div>
                 {product.map((item, i) => (
-                  <>
-                    {console.log(item.img)}
-                    <img
-                      key={i}
-                      className="category-card p-1"
-                      src={item.img}
-                      alt="Men colthes"
-                    />
-                  </>
+                  <img
+                    key={i}
+                    className="category-card p-1"
+                    src={item.img}
+                    alt="Men colthes"
+                  />
                 ))}
               </div>
             </Card>
