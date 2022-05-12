@@ -1,7 +1,8 @@
 import React, { useState } from "react"
-import { Modal, Form, Button } from "react-bootstrap"
+import { Form, Button, Modal } from "react-bootstrap"
+import SignUpModal from "./SignUpModals"
 
-const Signup = () => {
+const SignInPage = () => {
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -9,15 +10,12 @@ const Signup = () => {
   return (
     <>
       <Button variant="danger" onClick={handleShow}>
-        Sign Up
+        Sign In
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Form className="p-3">
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>User Name</Form.Label>
-            <Form.Control type="text" placeholder="User Name" />
-
             <Form.Label>Email address</Form.Label>
             <Form.Control type="email" placeholder="Enter email" />
 
@@ -25,18 +23,11 @@ const Signup = () => {
             <Form.Control type="password" placeholder="Password" />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control type="password" placeholder="Confirm Password" />
-          </Form.Group>
-
           <Button variant="danger" type="submit">
             Submit
           </Button>
           <Modal.Body style={{ paddingLeft: "0" }}>
-            <p>
-              Have an account? <span style={{ color: "#dc3545" }}>Sign In</span>
-            </p>
+            <p>Have an account? {<SignUpModal />}</p>
           </Modal.Body>
         </Form>
       </Modal>
@@ -44,4 +35,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default SignInPage

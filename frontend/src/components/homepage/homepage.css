@@ -2,3 +2,12 @@
     width: 90px;
     display: inline;
 }
+
+.btn-signin{
+    width: 100% ;
+}
+
+.form-border{
+    border: 3px solid #dc3545;
+    border-radius: 20px;
+}

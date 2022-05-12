@@ -3,6 +3,8 @@ import { Card, Col, Container, Row, Button } from "react-bootstrap"
 import Slide from "./Slide/Slide"
 import homepage from "./homepage.css"
 import axios from "axios"
+import { Link } from "react-router-dom"
+import SignInModals from "../SignInModals"
 
 const CategoryCard = () => {
   const [product, setProduct] = useState([])
@@ -13,7 +15,7 @@ const CategoryCard = () => {
       let { data } = await axios.get("http://localhost:4000/products")
       let product = data.products
       setProduct(product)
-      // console.log(data)
+      // console.log(product)
     }
     fetchData()
   }, [])
@@ -24,28 +26,13 @@ const CategoryCard = () => {
           <Col className="mt-5 mb-5" lg="3">
             <Card style={{ width: "20rem" }} className="p-3">
               <Card.Title className="text-center ">Men Clothes</Card.Title>
-              <hr class="bg-danger border-2 border-top border-dark"></hr>
+              <hr className="bg-dark border-2 border-top border-dark"></hr>
               <div>
                 {product.map((item, i) => (
                   <>
+                    {console.log(item.img)}
                     <img
-                      className="category-card p-1"
-                      src={item.img}
-                      alt="Men colthes"
-                    />
-                  </>
-                ))}
-              </div>
-            </Card>
-          </Col>
-          <Col className="mt-5 mb-5 " lg="3">
-            <Card style={{ width: "20rem" }} className="p-3">
-              <Card.Title className="text-center ">Women Clothes</Card.Title>
-              <hr class="bg-danger border-2 border-top border-dark"></hr>
-              <div>
-                {product.map((item, i) => (
-                  <>
-                    <img
+                      key={i}
                       className="category-card p-1"
                       src={item.img}
                       alt="Men colthes"
@@ -56,36 +43,65 @@ const CategoryCard = () => {
             </Card>
           </Col>
 
-          <Col className="mt-5 mb-5  " lg="3">
+          <Col className="mt-5 mb-5" lg="3">
             <Card style={{ width: "20rem" }} className="p-3">
-              <Card.Title className="text-center ">Children Clothes</Card.Title>
-              <hr class="bg-danger border-2 border-top border-dark"></hr>
+              <Card.Title className="text-center ">Women Clothes</Card.Title>
+              <hr className="bg-dark border-2 border-top border-dark"></hr>
               <div>
                 {product.map((item, i) => (
-                  <>
-                    <img
-                      className="category-card p-1"
-                      src={item.img}
-                      alt="Men colthes"
-                    />
-                  </>
+                  <img
+                    key={i}
+                    className="category-card p-1"
+                    src={item.img}
+                    alt="Men colthes"
+                  />
                 ))}
               </div>
             </Card>
           </Col>
+
+          <Col className="mt-5 mb-5" lg="3">
+            <Card style={{ width: "20rem" }} className="p-3">
+              <Card.Title className="text-center ">Children Clothes</Card.Title>
+              <hr className="bg-dark border-2 border-top border-dark"></hr>
+              <div>
+                {product.map((item, i) => (
+                  <img
+                    key={i}
+                    className="category-card p-1"
+                    src={item.img}
+                    alt="Men colthes"
+                  />
+                ))}
+              </div>
+            </Card>
+          </Col>
+
           <Col className="mt-5 mb-5" lg="3">
             <Card style={{ width: "20rem" }}>
               <Card.Body>
                 <Card.Title style={{ fontSize: "19px", textAlign: "center" }}>
-                  {" "}
-                  Sign in for the best experience{" "}
+                  Sign in for the best experience
                 </Card.Title>
-                <div className="d-grid gap-2">
-                  <Button variant="danger" size="lg">
-                    Sign In
-                  </Button>
+                <div className="d-grid gap-2 mt-3">
+                  <SignInModals />
                 </div>
               </Card.Body>
+            </Card>
+            <Card
+              className="mt-3"
+              style={{
+                width: "20rem",
+                display: "flex",
+                justifyContent: "center",
+                justifyItems: "center",
+              }}
+            >
+              <Card.Img
+                style={{ width: "232px" }}
+                variant="top"
+                src="./images/3.jpeg"
+              />
             </Card>
           </Col>
         </Row>
