@@ -9,7 +9,7 @@ import {
   Form,
 } from "react-bootstrap";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Rating from "./Rating";
 import { Helmet } from "react-helmet-async";
 import { Store } from "../Store";
@@ -28,6 +28,8 @@ function reducer(state, action) {
 }
 
 const ProductPage = () => {
+  const { userState, userDispatch } = useContext(Store);
+
   const [{ loading, product, error }, dispatch] = useReducer(reducer, {
     loading: false,
     product: [],
@@ -47,20 +49,26 @@ const ProductPage = () => {
     fetchData();
   }, []);
 
+  const navigate = useNavigate();
+
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart } = state;
 
   let handleAddToCart = async (product) => {
-    console.log(product);
-    const existingItem = cart.cartItems.find(
-      (item) => item._id === product._id
-    );
-    const quantity = existingItem ? existingItem.quantity + 1 : 1;
+    if (userState.userInfo === null) {
+      let redirect = "login?redirect=products";
+      navigate(`/${redirect}`);
+    } else {
+      const existingItem = cart.cartItems.find(
+        (item) => item._id === product._id
+      );
+      const quantity = existingItem ? existingItem.quantity + 1 : 1;
 
-    ctxDispatch({
-      type: "CART_ADD_ITEMS",
-      payload: { ...product, quantity },
-    });
+      ctxDispatch({
+        type: "CART_ADD_ITEMS",
+        payload: { ...product, quantity },
+      });
+    }
   };
 
   return (

@@ -47,10 +47,11 @@ function App() {
     });
   };
 
-  let handleRemoveItem = (item) => {
+  let handleRemoveItem = (id) => {
+    console.log(id);
     ctxDispatch({
       type: "CART_REMOVE_ITEMS",
-      payload: item,
+      payload: id,
     });
   };
 
