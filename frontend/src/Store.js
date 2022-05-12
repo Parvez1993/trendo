@@ -6,16 +6,14 @@ const initialState = {
   cart: {
     cartItems: localStorage.getItem("cartItems") 
     ? JSON.parse(localStorage.getItem("cartItems")) 
-    : [] /* class 47 */
+    : [] 
   },
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case "CART_ADD_ITEMS":
-    /* class 46 */
     const newItem = action.payload;
-    // console.log(newItem);
     const existingItem = state.cart.cartItems.find((item) => item._id === newItem._id);
     const cartItems = existingItem 
     ? state.cart.cartItems.map((item) =>item._id === existingItem._id 
@@ -23,20 +21,17 @@ function reducer(state, action) {
       : item)
     : [...state.cart.cartItems, newItem];
 
-    localStorage.setItem("cartItems",JSON.stringify(cartItems)) /* class 47 */
+    localStorage.setItem("cartItems",JSON.stringify(cartItems))
 
-    // console.log(cartItems);
     return { 
       ...state, 
       cart: {
         ...state.cart,cartItems
       } 
     };
-    /* class 46 */
 
-    {/* class 47 */}
 
-    case 'CLEAR_CART':{    /* Vedio 45 */
+    case 'CLEAR_CART':{   
       return { 
         ...state, 
         cart: { 
@@ -46,10 +41,10 @@ function reducer(state, action) {
     }
 
 
-    case "CART_REMOVE_ITEMS":{      /* Cart delete Part */
+    case "CART_REMOVE_ITEMS":{ 
       const cartItems = state.cart.cartItems.filter((item)=> item._id !== action.payload._id)
 
-      localStorage.setItem("cartItems",JSON.stringify(cartItems)) /* class 47 */
+      localStorage.setItem("cartItems",JSON.stringify(cartItems)) 
 
       return { 
         ...state, 
@@ -58,7 +53,6 @@ function reducer(state, action) {
         } 
       };
     }
-    {/* class 47 */}
     default:
     return state;
   }
