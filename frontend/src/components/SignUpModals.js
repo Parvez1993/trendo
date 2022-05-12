@@ -6,6 +6,9 @@ const Signup = () => {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
+  const { search } = useLocation()
+  const redirectURL = new URLSearchParams(search).get("redirect")
+
   return (
     <>
       <Button variant="danger" onClick={handleShow}>
