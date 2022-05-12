@@ -35,7 +35,7 @@ const getProductsbyId = async (req, res) => {
 
 const getProductsbyCategory = async (req, res) => {
   const match = req.params.category;
-  const category = await Product.find({ category: { $all: match } });
+  const category = await Product.find({ model: match });
 
   if (category) {
     res.status(StatusCodes.OK).json({ category });
