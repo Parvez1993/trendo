@@ -18,19 +18,10 @@ import HomePage from "./components/homepage/HomePage"
 import ProductPage from "./components/ProductPage.js"
 import ProductDetails from "./components/ProductDetails.js"
 import CartPage from "./components/CartPage.js"
-import {
-  FaCartPlus,
-  FaMinusCircle,
-  FaPlusCircle,
-  FaSearch,
-  FaTrashAlt,
-  FaPlus,
-  FaMinus,
-} from "react-icons/fa"
+import { FaTrashAlt, FaPlus, FaMinus } from "react-icons/fa"
 import LoginPage from "./components/LoginPage"
 import { Store } from "./Store"
 import OrderConfirmed from "./components/OrderConfirmed"
-import { ImDisplay } from "react-icons/im"
 
 function App() {
   const {
