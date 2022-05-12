@@ -75,17 +75,6 @@ function App() {
             Trendo
           </Navbar.Brand>
 
-          <InputGroup size="sm" className="search ms-auto">
-            <InputGroup.Text id="basic-addon1">
-              <FaSearch />
-            </InputGroup.Text>
-            <FormControl
-              placeholder="Search Product"
-              aria-label="Search Product"
-              aria-describedby="basic-addon1"
-            />
-          </InputGroup>
-
           <Nav className="ms-auto">
             <Link className="nav-list" to="/">
               Home
