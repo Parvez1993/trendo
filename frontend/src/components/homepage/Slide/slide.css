@@ -1,5 +1,6 @@
 .mySwiper{
     width: 100%;
+    cursor: pointer;
 }
 
 .mySwiper img{

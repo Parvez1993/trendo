@@ -5,6 +5,7 @@ import homepage from "./homepage.css"
 import CategoryCard from "./CategoryCard"
 import TabsCategory from "./TabsCategory"
 import { Link } from "react-router-dom"
+import ProductSlideTwo from "./Slide/ProductSlideTwo"
 
 const HomePage = () => {
   return (
@@ -36,7 +37,9 @@ const HomePage = () => {
 
       <CategoryCard />
 
-      <TabsCategory />
+      {/* <TabsCategory /> */}
+
+      <ProductSlideTwo />
     </>
   )
 }
