@@ -1,9 +1,10 @@
-import { useState,useReducer,useEffect, } from 'react';
+import { useState,useReducer,useEffect, useContext, } from 'react';
 import axios from 'axios';
-import { useParams } from "react-router-dom";
-import { Container,Row,Col,Card,ListGroup,Alert,Badge } from 'react-bootstrap';
+import { useParams,Link } from "react-router-dom";
+import { Container,Row,Col,Card,ListGroup,Alert,Badge,Form,Button } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async'
 import Rating from './Rating';
+import { Store } from '../Store';
 
 
 function reducer(state, action) {
@@ -22,6 +23,10 @@ function reducer(state, action) {
 const ProductDetails = () => {
   let params = useParams();
 
+  const [cuponText, setCuponText] = useState("")
+  const [errcupon, setErrcupon] = useState("")
+  const [afterdiscountprice, setAfterdiscountprice] = useState("")
+
   const [{loading,product,error}, dispatch] = useReducer(reducer,{
     loading: false,
     product: {},
@@ -29,7 +34,6 @@ const ProductDetails = () => {
   });
 
 
-//erokom kemne pass hobe data apne bolen string e :id disen 
   useEffect(()=>{
     async function fetchData() {
       dispatch({type: 'FETCH_REQUEST'})
@@ -46,6 +50,39 @@ const ProductDetails = () => {
     }
     fetchData();
   },[params.slug])
+
+  const {state, dispatch: ctxDispatch} = useContext(Store)
+
+  const {cart} = state
+
+  let handleAddToCart = () =>{
+    const existingItem = cart.cartItems.find((item)=>item._id === product._id)
+    const quantity = existingItem ? existingItem.quantity + 1 : 1
+
+    ctxDispatch({
+      type: 'CART_ADD_ITEMS',
+      payload: 
+      {...product,quantity}
+    })
+  }
+
+  let handleCuponText = (e) =>{
+    setCuponText(e.target.value);
+  }
+
+  let handleCupon = () =>{
+    if(product.coupon !== ""){
+      if(product.coupon == cuponText){
+        let discountprice = (product.price * product.discount) / 100
+        let afterdiscountprice = product.price - discountprice
+        setAfterdiscountprice(afterdiscountprice);
+      }else{
+        setErrcupon("Wrong Cupon Code");
+      }
+    }else{
+      setErrcupon("not allow any cupon for this product")
+    }
+  }
 
 
   return(
@@ -104,6 +141,73 @@ const ProductDetails = () => {
               
               </ListGroup>
             </Card>
+            </Col>
+
+            <Col lg={3}>
+            <ListGroup >
+              <ListGroup.Item>
+                <h5>
+                  {afterdiscountprice
+                  ?
+                    <>
+                      <h3>
+                        Price: {''} 
+                        <del>
+                          ${product.price}
+                        </del>
+                        {' '}
+                        ${afterdiscountprice}
+                      </h3>
+                    </>
+                  :
+                    <h3> 
+                      Price: $
+                      {product.price}
+                    </h3>
+                  }
+                </h5>
+              </ListGroup.Item>
+              
+              <ListGroup.Item>
+                <Form.Control   
+                  onChange={handleCuponText}
+                  type="text" 
+                  placeholder="coupon" 
+                />
+
+                <Form.Text className="text-muted">
+                  {errcupon}
+                </Form.Text>
+                <br/>
+
+                <Button
+                  onClick={handleCupon}
+                  variant="info">
+                  Apply
+                </Button>
+                </ListGroup.Item>
+
+                <ListGroup.Item>
+                {product.stock == 0
+                ?
+                  <Button 
+                    className='mt-1 w-100'
+                    variant="danger"
+                    >
+                    Out of Stock
+                  </Button>
+                :
+                  <Link to={"/cartpage"}>
+                    <Button
+                      className='w-100'
+                      onClick={handleAddToCart}
+                      variant="info">
+                      Add to cart
+                    </Button>
+                  </Link>
+                }
+                </ListGroup.Item>
+            </ListGroup>
             </Col>
 
             

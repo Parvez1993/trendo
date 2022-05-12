@@ -9,9 +9,7 @@ import { Link,useNavigate } from "react-router-dom";
 const CartPage = () => {
   let navigate = useNavigate(); 
 
-  const [cuponText, setCuponText] = useState("")
-  const [errcupon, setErrcupon] = useState("")
-  const [afterdiscountprice, setAfterdiscountprice] = useState("") 
+ 
 
   const {state, dispatch: ctxDispatch} = useContext(Store)
   const {cart: {cartItems}} = state
@@ -36,22 +34,7 @@ const CartPage = () => {
   }
 
 
-  let handleCuponText = (e) =>{
-    setCuponText(e.target.value);
-  }
-
-  let handleCupon = () =>{
-    {cartItems.map((item)=>{
-      if(item.coupon == cuponText){
-        let discountprice = (item.price * item.quantity * item.discount) / 100
-        let afterdiscountprice = item.price * item.quantity - discountprice
-        setAfterdiscountprice(afterdiscountprice);
-        console.log(afterdiscountprice);
-      }else{
-        setErrcupon("Wrong Cupon Code")
-      }
-    })}
-  }
+  
   
 
   return (
@@ -119,60 +102,11 @@ const CartPage = () => {
                   ({cartItems.reduce((accumulator, current)=> accumulator + current.quantity, 0)})
                   Products
                 </h1>
-
-                {errcupon == ""
-                ?
-                  <>
-                    {afterdiscountprice
-                    ? 
-                      <h3>
-                        Price: $
-                        <del>
-                          {cartItems.reduce((accumulator, current)=> 
-                          accumulator + current.price * current.quantity, 0)}
-                        </del>
-                        {' '}
-                        {cartItems.reduce((accumulator, current)=> 
-                          accumulator + current.price * current.quantity, 0)
-                          - 
-                          cartItems.reduce((accumulator, current)=> 
-                          accumulator + (current.price * current.quantity * current.discount) / 100, 0)
-                        }
-                      </h3>
-                    :
-                      <h3>
-                        Price $
-                        {cartItems.reduce((accumulator, current)=> 
-                        accumulator + current.price * current.quantity, 0)}
-                      </h3>
-                    }
-                  </>
-                :
-                  <h3>
-                    Price $
-                    {cartItems.reduce((accumulator, current)=> 
-                    accumulator + current.price * current.quantity, 0)}
-                  </h3>  
-                }
-              </ListGroup.Item>
-
-              <ListGroup.Item>
-                <Form.Control   
-                  className='mt-2'
-                  onChange={handleCuponText}
-                  type="text" 
-                  placeholder="text" 
-                />
-                <Form.Text className="text-muted">
-                  {errcupon}
-                </Form.Text>
-                <br/>
-                <Button
-                  className=' mb-2'
-                  onClick={handleCupon}
-                  variant="info">
-                  Apply
-                </Button>
+                <h3>
+                  Price $
+                  {cartItems.reduce((accumulator, current)=> 
+                  accumulator + current.price * current.quantity, 0)}
+                </h3> 
               </ListGroup.Item>
             </ListGroup>
 
