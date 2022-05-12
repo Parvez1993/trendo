@@ -1,11 +1,14 @@
-import React, { useState } from "react"
-import { Modal, Form, Button } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import React, { useState } from "react";
+import { Modal, Form, Button } from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
 
 const Signup = () => {
-  const [show, setShow] = useState(false)
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const { search } = useLocation();
+  const redirectURL = new URLSearchParams(search).get("redirect");
 
   return (
     <>
@@ -26,18 +29,13 @@ const Signup = () => {
             <Form.Control type="password" placeholder="Password" />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control type="password" placeholder="Confirm Password" />
-          </Form.Group>
-
           <Button variant="primary" type="submit">
             Submit
           </Button>
         </Form>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;
