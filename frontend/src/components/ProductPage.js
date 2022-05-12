@@ -3,6 +3,7 @@ import { Col, Container, Row,Card,Badge,Button,Form } from 'react-bootstrap';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import Rating from "./Rating";
+import { Helmet } from 'react-helmet-async'
 import { Store } from "../Store";
 
 
@@ -54,14 +55,16 @@ const ProductPage = () => {
       payload: {...product, quantity}
     })
   }
-
-
-
-
+  
 
 
   return (
     <Container>
+      <Helmet>
+        <title>
+            Product Page
+        </title>
+      </Helmet>
       <Row className="mt-2 mb-2" >
         {product.map((item)=>(
           <Col lg={3} >
@@ -71,7 +74,7 @@ const ProductPage = () => {
                 style={{height: 40}}
             >
                 <Card.Title className='mt-3 '>
-                    <Link to={`/products/${item.slug}`}>
+                    <Link to={`/products/${item._id}`}>
                         <h4 className='title'>{item.name}</h4> {' '}
                     </Link>
                 </Card.Title>

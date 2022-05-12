@@ -1,8 +1,9 @@
 import { useState,useReducer,useEffect, } from 'react';
 import axios from 'axios';
 import { useParams } from "react-router-dom";
-import { Container,Row,Col,Card,ListGroup,Alert } from 'react-bootstrap';
-
+import { Container,Row,Col,Card,ListGroup,Alert,Badge } from 'react-bootstrap';
+import { Helmet } from 'react-helmet-async'
+import Rating from './Rating';
 
 
 function reducer(state, action) {
@@ -27,14 +28,16 @@ const ProductDetails = () => {
     error: '',
   });
 
+
+//erokom kemne pass hobe data apne bolen string e :id disen 
   useEffect(()=>{
     async function fetchData() {
       dispatch({type: 'FETCH_REQUEST'})
       try{
-        let product = await axios.get(`http://localhost:4000/products/${params.slug}`)
-        // let {products}=data;
+        let {data} = await axios.get(`http://localhost:4000/products/${params.id}`)
+        let {product}=data;
         console.log(product);
-        dispatch({type: 'FETCH_SUCCESS', payload: ""})
+        dispatch({type: 'FETCH_SUCCESS', payload: product})
 
         
       }catch(err){
@@ -73,23 +76,23 @@ const ProductDetails = () => {
                   </h4>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  {/* <Rating 
+                  <Rating 
                     rating={product.rating} 
                     numberofrating={product.numberofrating} 
-                  /> */}
+                  />
                 </ListGroup.Item>
 
-                {/* <ListGroup.Item>
-                  {product.instock>0 ?
+                <ListGroup.Item>
+                  {product.stock>0 ?
                     <h6>
-                    Stock <Badge bg="success">{product.instock}</Badge>
+                    Stock <Badge bg="success">{product.stock}</Badge>
                     </h6>
                     :
                     <h6>
-                      Stock <Badge bg="danger">{product.instock}</Badge>
+                      Stock <Badge bg="danger">{product.stock}</Badge>
                     </h6>
                   }
-                </ListGroup.Item> */}
+                </ListGroup.Item>
 
                 <ListGroup.Item className='subDetails'>
                 <h4 className='price'>${product.price}</h4>
