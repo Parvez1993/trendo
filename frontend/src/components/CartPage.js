@@ -32,12 +32,13 @@ const CartPage = () => {
     });
   };
 
-  let handleRemoveItem = (item) => {
+  let handleRemoveItem = (id) => {
+    console.log(id);
     ctxDispatch({
-      type: "CART_REMOVE_ITEMS",
-      payload: item,
+        type: "CART_REMOVE_ITEMS",
+        payload: id,
     });
-  };
+    };
 
   let handleCheckOut = () => {
     const route =
@@ -70,7 +71,7 @@ const CartPage = () => {
                     <Col lg={3}>
                       <Button
                         onClick={() => updateCart(item, item.quantity + 1)}
-                        disabled={item.quantity === item.instock}
+                        disabled={item.quantity === item.stock}
                         variant="success"
                       >
                         +
@@ -89,7 +90,7 @@ const CartPage = () => {
 
                     <Col lg={3}>
                       <Button
-                        onClick={() => handleRemoveItem(item)}
+                        onClick={() => handleRemoveItem(item._id)}
                         variant="danger"
                       >
                         Delete

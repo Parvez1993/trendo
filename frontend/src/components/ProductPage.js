@@ -102,7 +102,10 @@ const ProductPage = () => {
                   <h5 className="price">Price: ${item.price}</h5>
                 </Card.Text>
               </Card.Body>
-              <Card.Body className="mt-2">
+              <Card.Body
+               className="mt-2"
+               style={{paddingTop: 180}}
+              >
                 {item.stock == 0 ? (
                   <Button className="mt-5 w-100" variant="danger">
                     Out of Stock

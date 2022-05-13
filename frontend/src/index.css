@@ -94,3 +94,13 @@ a {
   line-height: 22px;
   color: #303960;
 }
+.offcanvas-title {
+  margin-left: 78px;
+}
+.offcanvas-end {
+  top: 0;
+  right: 0;
+  width: 480px;
+  border-left: 1px solid rgba(0,0,0,.2);
+  transform: translateX(100%);
+}

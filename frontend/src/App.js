@@ -14,6 +14,7 @@ import {
   Col,
   Table,
   Badge,
+  Offcanvas,
 } from "react-bootstrap";
 
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
@@ -26,6 +27,7 @@ import SignUpModals from "./components/SignUpModals";
 import LoginPage from "./components/LoginPage";
 import { Store } from "./Store";
 import OrderConfirmed from "./components/OrderConfirmed";
+import Offcanvs from "./components/Offcanvs";
 
 function App() {
   const {
@@ -62,6 +64,8 @@ function App() {
     navigate("/");
     localStorage.setItem("userInfo", null);
   };
+
+
   return (
     <>
       <Navbar bg="dark" variant="dark" className="nav">
@@ -88,100 +92,7 @@ function App() {
             <Link className="nav-list" to="/products">
               Products
             </Link>
-            <div className="d-flex">
-              <NavDropdown
-                title={<span className="text-white my-auto">Cart</span>}
-              >
-                <Table striped bordered hover size="sm">
-                  {state.cart.cartItems.length > 0 ? (
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Image</th>
-                        <th>Price</th>
-                        <th>Quanity </th>
-                        <th>Total </th>
-                        <th>Remove</th>
-                      </tr>
-                    </thead>
-                  ) : (
-                    <p className="text-center">No items in cart</p>
-                  )}
-
-                  {state.cart.cartItems.map((item) => {
-                    return (
-                      <>
-                        <tr>
-                          <td>{item.name}</td>
-                          <td>
-                            <img
-                              src={item.img}
-                              alt={item.name}
-                              style={{ width: "100px" }}
-                            />
-                          </td>
-                          <td>{item.price}</td>
-                          <td>
-                            <div className="d-flex align-items-center gap-2 justify">
-                              <Button
-                                onClick={() =>
-                                  updateCart(item, item.quantity + 1)
-                                }
-                                disabled={
-                                  item.quantity >= item.stock ? true : false
-                                }
-                              >
-                                <FaPlus />
-                              </Button>
-                              <h6>{item.quantity}</h6>
-                              <Button
-                                variant="warning"
-                                onClick={() =>
-                                  updateCart(item, item.quantity - 1)
-                                }
-                                disabled={item.quantity <= 1 ? true : false}
-                              >
-                                <FaMinus />
-                              </Button>
-                            </div>
-                          </td>
-                          <td>{item.quantity * item.price}</td>
-                          <td>
-                            <div>
-                              <Button
-                                variant="danger"
-                                onClick={() => {
-                                  handleRemoveItem(item._id);
-                                }}
-                              >
-                                Delete
-                              </Button>
-                            </div>
-                          </td>
-                        </tr>
-                      </>
-                    );
-                  })}
-                </Table>
-
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/cartpage">
-                  <div className="text-center">
-                    {state.cart.cartItems.length > 0 ? (
-                      <Button className="primary w-100">Go to Cart</Button>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                </NavDropdown.Item>
-              </NavDropdown>
-              <div className="my-2">
-                {" "}
-                <Badge pill bg="success">
-                  {state.cart ? state.cart.cartItems.length : 0}
-                </Badge>
-              </div>
-            </div>
+            <Offcanvs/>
             {userState.userInfo !== null ? (
               <Nav.Link className="text-white" onClick={handleLogout}>
                 Logout
@@ -194,6 +105,8 @@ function App() {
           </Nav>
         </Container>
       </Navbar>
+
+      
 
       <Routes>
         <Route path="/" element={<HomePage />} />
