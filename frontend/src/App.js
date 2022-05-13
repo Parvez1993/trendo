@@ -42,21 +42,6 @@ function App() {
     cart: { cartItems },
   } = state;
 
-  let updateCart = (item, quantity) => {
-    ctxDispatch({
-      type: "CART_ADD_ITEMS",
-      payload: { ...item, quantity },
-    });
-  };
-
-  let handleRemoveItem = (id) => {
-    console.log(id);
-    ctxDispatch({
-      type: "CART_REMOVE_ITEMS",
-      payload: id,
-    });
-  };
-
   const handleLogout = () => {
     userDispatch({
       type: "LOGOUT_USER",
@@ -65,15 +50,14 @@ function App() {
     localStorage.setItem("userInfo", null);
   };
 
-
   return (
     <>
       <Navbar bg="dark" variant="dark" className="nav">
         <Container>
-          <Navbar.Brand href="#home" className="logo">
+          <Navbar.Brand href="/" className="logo">
             Trendo
           </Navbar.Brand>
-
+          {/* 
           <InputGroup size="sm" className="search ms-auto">
             <InputGroup.Text id="basic-addon1">
               <FaSearch />
@@ -83,7 +67,16 @@ function App() {
               aria-label="Search Product"
               aria-describedby="basic-addon1"
             />
-          </InputGroup>
+          </InputGroup> */}
+
+          <div>
+            <h5 className="text-white mt-1 mx-5">
+              {" "}
+              {userState.userInfo !== null
+                ? `Welcome ${userState.userInfo.user.name}`
+                : `Welcome Guest`}
+            </h5>
+          </div>
 
           <Nav className="ms-auto">
             <Link className="nav-list" to="/">
@@ -92,7 +85,7 @@ function App() {
             <Link className="nav-list" to="/products">
               Products
             </Link>
-            <Offcanvs/>
+            <Offcanvs />
             {userState.userInfo !== null ? (
               <Nav.Link className="text-white" onClick={handleLogout}>
                 Logout
@@ -105,8 +98,6 @@ function App() {
           </Nav>
         </Container>
       </Navbar>
-
-      
 
       <Routes>
         <Route path="/" element={<HomePage />} />
